@@ -11,7 +11,7 @@ namespace MovieApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new WatchlistPage());
+            MainPage = new NavigationPage(new Login());
         }
 
         protected override void OnStart()
