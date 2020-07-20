@@ -119,5 +119,38 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
+        <pv:PancakeView HorizontalOptions="End" VerticalOptions="Start" Margin="20" CornerRadius="30" Padding="15">
+            <pv:PancakeView.BackgroundGradientStops>
+                <pv:GradientStopCollection>
+                    <pv:GradientStop Color="LightBlue" Offset="0"/>
+                    <pv:GradientStop Color="SlateBlue"
+                                     Offset="1" />
+                </pv:GradientStopCollection>
+            </pv:PancakeView.BackgroundGradientStops>
+            <Expander  HorizontalOptions="Start" VerticalOptions="End">
+                <Expander.Header>
+                    <Image Source="play.png" WidthRequest="20" HeightRequest="20">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}"
+                                         Value="True">
+                                <Setter Property="Source" Value="a.jpg"/>
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Expander.Header>
+                <StackLayout Spacing="20" Margin="0,20">
+                    <ImageButton Source="a.jpg" WidthRequest="20" HeightRequest="20" BackgroundColor="Transparent"/>
+                    <ImageButton Source="a.jpg"
+                                 WidthRequest="20"
+                                 HeightRequest="20"
+                                 BackgroundColor="Transparent" />
+                    <ImageButton Source="a.jpg"
+                                 WidthRequest="20"
+                                 HeightRequest="20"
+                                 BackgroundColor="Transparent" />
+                </StackLayout>
+            </Expander>
+        </pv:PancakeView>
     </Grid>
 </ContentPage>
