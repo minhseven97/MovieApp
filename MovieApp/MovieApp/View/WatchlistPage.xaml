@@ -39,7 +39,7 @@
                 </pv:PancakeView.BackgroundGradientStops>
                 <pv:PancakeView HasShadow="True"
                                 Margin="0,0,0,50"
-                                BackgroundColor="#E22963"
+                                BackgroundColor="Green"
                                 HeightRequest="40"
                                 WidthRequest="150"
                                 CornerRadius="20"
@@ -56,7 +56,7 @@
                                HeightRequest="16"
                                VerticalOptions="Center"
                                HorizontalOptions="Center" />
-                        <Label Text="XEM"
+                        <Label Text="XEM PHIM"
                                TextColor="White"
                                FontSize="13"
                                VerticalOptions="Center"
@@ -119,5 +119,51 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
+        <pv:PancakeView HorizontalOptions="End"
+                        VerticalOptions="Start"
+                        Margin="20"
+                        CornerRadius="30"
+                        Padding="10">
+            <pv:PancakeView.BackgroundGradientStops>
+                <pv:GradientStopCollection>
+                    <pv:GradientStop Color="LightBlue"
+                                     Offset="0" />
+                    <pv:GradientStop Color="SlateBlue"
+                                     Offset="1" />
+                </pv:GradientStopCollection>
+            </pv:PancakeView.BackgroundGradientStops>
+            <Expander  HorizontalOptions="Start"
+                       VerticalOptions="End">
+                <Expander.Header>
+                    <Image Source="plus.png"
+                           WidthRequest="25"
+                           HeightRequest="25">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type Expander}}, Path=IsExpanded}"
+                                         Value="True">
+                                <Setter Property="Source"
+                                        Value="minus.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                </Expander.Header>
+                <StackLayout Spacing="20"
+                             Margin="0,20">
+                    <ImageButton Source="person.png"
+                                 WidthRequest="25"
+                                 HeightRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <ImageButton Source="find.png"
+                                 WidthRequest="25"
+                                 HeightRequest="25"
+                                 BackgroundColor="Transparent" />
+                    <ImageButton Source="set.png"
+                                 WidthRequest="25"
+                                 HeightRequest="25"
+                                 BackgroundColor="Transparent" />
+                </StackLayout>
+            </Expander>
+        </pv:PancakeView>
     </Grid>
 </ContentPage>

@@ -10,7 +10,7 @@ namespace MovieApp
         public App()
         {
             InitializeComponent();
-
+            Device.SetFlags(new[] { "Expander_Experimental" });
             MainPage = new NavigationPage(new Login());
         }
 
