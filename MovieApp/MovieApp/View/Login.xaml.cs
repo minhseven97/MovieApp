@@ -1,4 +1,5 @@
 ﻿using mo.Animations;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,17 @@ namespace MovieApp.View
             });
         }
 
-        private void login_click(object sender, EventArgs e)
+        private async void login_click(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new WatchlistPage());
+            var IsConnected = CrossConnectivity.Current.IsConnected;
+            if (IsConnected == true)
+            {
+                await Navigation.PushAsync(new WatchlistPage());
+            }
+            else
+            {
+                await DisplayAlert("Cảnh báo", "Bạn chưa kết nối mạng", "OK");
+            }
         }
     }
 }
