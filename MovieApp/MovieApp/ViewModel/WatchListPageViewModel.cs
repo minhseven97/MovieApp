@@ -12,9 +12,9 @@ using Xamarin.Forms;
 
 namespace MovieApp.ViewModel
 {
-    public class MovieListViewModel : BaseViewModel
+    public class WatchListPageViewModel : BaseViewModel
     {
-        public MovieListViewModel()
+        public WatchListPageViewModel()
         {
             GetOnlineData();
         }
@@ -23,12 +23,32 @@ namespace MovieApp.ViewModel
 
 
         private Movie selectedMovie;
+        private Movie selectedMovie1;
+        private Movie selectedMovie2;
         public Movie SelectedMovie
         {
             get { return selectedMovie; }
             set
             {
                 selectedMovie = value;
+                OnPropertyChanged();
+            }
+        }
+        public Movie SelectedMovie1
+        {
+            get { return selectedMovie1; }
+            set
+            {
+                selectedMovie1 = value;
+                OnPropertyChanged();
+            }
+        }
+        public Movie SelectedMovie2
+        {
+            get { return selectedMovie2; }
+            set
+            {
+                selectedMovie2 = value;
                 OnPropertyChanged();
             }
         }
@@ -52,6 +72,24 @@ namespace MovieApp.ViewModel
                 var vm = new DetailViewModel { SelectedMovie = selectedMovie };
                 var page = new DetailPage { BindingContext = vm };
                 Application.Current.MainPage.Navigation.PushAsync(page);
+            }
+        });
+        public ICommand SelectionCommand1 => new Command(() =>
+        { 
+            if (selectedMovie1 != null)
+            {
+                var vm1 = new DetailViewModel { SelectedMovie = selectedMovie1 };
+                var page1 = new DetailPage { BindingContext = vm1 };
+                Application.Current.MainPage.Navigation.PushAsync(page1);
+            }
+        });
+        public ICommand SelectionCommand2 => new Command(() =>
+        {
+            if (selectedMovie2 != null)
+            {
+                var vm2 = new DetailViewModel { SelectedMovie = selectedMovie2 };
+                var page2 = new DetailPage { BindingContext = vm2 };
+                Application.Current.MainPage.Navigation.PushAsync(page2);
             }
         });
 

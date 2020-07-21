@@ -19,7 +19,10 @@ namespace MovieApp.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
             moviesColView.SelectedItem = null;
+            moviesColView1.SelectedItem = null;
+            moviesColView2.SelectedItem = null;
         }
     }
 }
