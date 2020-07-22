@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using MediaManager;
+using Lottie.Forms.Droid;
 
 namespace MovieApp.Droid
 {
@@ -22,6 +23,7 @@ namespace MovieApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            AnimationViewRenderer.Init();
             CrossMediaManager.Current.Init(this);
             LoadApplication(new App());
         }

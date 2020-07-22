@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace MovieApp.View
         public DetailPage()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DependencyService.Get<IOrientationHandler>().ForcePortrait();
         }
     }
 }
