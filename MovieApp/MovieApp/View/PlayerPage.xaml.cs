@@ -1,4 +1,5 @@
-﻿using MovieApp.Core;
+﻿using MediaManager;
+using MovieApp.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace MovieApp.View
         {
             InitializeComponent();
             DependencyService.Get<IOrientationHandler>().ForceLandscape();
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            CrossMediaManager.Current.Stop();
         }
     }
 }

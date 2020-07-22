@@ -67,7 +67,8 @@
                                                  AutoPlay="True"
                                                  HeightRequest="30"
                                                  VerticalOptions="FillAndExpand"
-                                                 HorizontalOptions="FillAndExpand" />
+                                                 HorizontalOptions="FillAndExpand"
+                                                 ClickedCommand="{Binding PlayCommand}"/>
                             <Label Text="Xem Phim"
                                    Grid.Column="1"
                                    TextColor="White"
