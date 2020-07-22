@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieApp.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace MovieApp.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            DependencyService.Get<IOrientationHandler>().ForcePortrait();
             moviesColView.SelectedItem = null;
             moviesColView1.SelectedItem = null;
             moviesColView2.SelectedItem = null;

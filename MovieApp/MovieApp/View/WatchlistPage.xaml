@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:vm="clr-namespace:MovieApp.ViewModel"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="MovieApp.View.WatchlistPage">
@@ -51,20 +52,29 @@
                         <pv:PancakeView.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlayCommand}" />
                         </pv:PancakeView.GestureRecognizers>
-                        <StackLayout Orientation="Horizontal"
-                                     Spacing="15"
-                                     HorizontalOptions="Center">
-                            <Image Source="play.png"
-                                   WidthRequest="14"
-                                   HeightRequest="16"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center" />
-                            <Label Text="XEM PHIM"
+                        <Grid HorizontalOptions="FillAndExpand"
+                              VerticalOptions="CenterAndExpand"
+                              ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1.5*" />
+                            </Grid.ColumnDefinitions>
+                            <forms:AnimationView x:Name="AnimationView"
+                                                 Grid.Column="0"
+                                                 Animation="playy.json"
+                                                 Speed="1"
+                                                 Loop="True"
+                                                 AutoPlay="True"
+                                                 HeightRequest="30"
+                                                 VerticalOptions="FillAndExpand"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 ClickedCommand="{Binding PlayCommand}"/>
+                            <Label Text="Xem Phim"
+                                   Grid.Column="1"
                                    TextColor="White"
-                                   FontSize="13"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center" />
-                        </StackLayout>
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="StartAndExpand" />
+                        </Grid>
                     </pv:PancakeView>
                 </pv:PancakeView>
             </Grid>

@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="MovieApp.View.DetailPage">
@@ -32,18 +33,29 @@
                 <pv:PancakeView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding PlayCommand}" />
                 </pv:PancakeView.GestureRecognizers>
-                <StackLayout Orientation="Horizontal"
-                             Spacing="15"
-                             HorizontalOptions="Center">
-                    <Image Source="play.png"
-                           WidthRequest="14"
-                           HeightRequest="16"
-                           VerticalOptions="Center" />
-                    <Label Text="XEM PHIM"
+                <Grid HorizontalOptions="FillAndExpand"
+                      VerticalOptions="CenterAndExpand"
+                      ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1.5*" />
+                    </Grid.ColumnDefinitions>
+                    <forms:AnimationView x:Name="AnimationView"
+                                         Grid.Column="0"
+                                         Animation="playy.json"
+                                         Speed="1"
+                                         Loop="True"
+                                         AutoPlay="True"
+                                         HeightRequest="30"
+                                         VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand"
+                                         ClickedCommand="{Binding PlayCommand}" />
+                    <Label Text="Xem Phim"
+                           Grid.Column="1"
                            TextColor="White"
-                           FontSize="13"
-                           VerticalOptions="Center" />
-                </StackLayout>
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="StartAndExpand" />
+                </Grid>
             </pv:PancakeView>
         </Grid>
         <ScrollView Grid.Row="1"
@@ -58,12 +70,13 @@
                     <tabView:SfTabView.SelectionIndicatorSettings>
                         <tabView:SelectionIndicatorSettings Position="Bottom"
                                                             StrokeThickness="2"
-                                                            Color="Yellow" />
+                                                            Color="Green" />
                     </tabView:SfTabView.SelectionIndicatorSettings>
                     <tabView:SfTabView.Items>
-                        <tabView:SfTabItem Title="HSX"
-                                           SelectionColor="Blue"
-                                           TitleFontColor="Green">
+                        <tabView:SfTabItem Title="Giới thiệu"
+                                           SelectionColor="Green"
+                                           TitleFontColor="Gray"
+                                           TitleFontAttributes="Bold">
                             <tabView:SfTabItem.Content>
                                 <StackLayout>
                                     <Label Text="{Binding SelectedMovie.Title}"
@@ -79,8 +92,9 @@
                             </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
                         <tabView:SfTabItem Title="Bình luận"
-                                           SelectionColor="Blue"
-                                           TitleFontColor="Green">
+                                           SelectionColor="Green"
+                                           TitleFontColor="Gray"
+                                           TitleFontAttributes="Bold">
                             <tabView:SfTabItem.Content>
                                 <StackLayout>
                                     <Label Text="{Binding SelectedMovie.Title}"
