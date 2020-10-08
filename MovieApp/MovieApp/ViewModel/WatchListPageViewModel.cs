@@ -19,7 +19,7 @@ namespace MovieApp.ViewModel
             GetOnlineData();
         }
 
-        public Movie FeaturedMovie => WatchList?.Where(x => x.IsFeatured == true).FirstOrDefault();
+        public Movie FeaturedMovie => WatchList?.Where(x => x.MovieId == "1").FirstOrDefault();
 
 
         private Movie selectedMovie;
@@ -54,6 +54,8 @@ namespace MovieApp.ViewModel
         }
 
         private ObservableCollection<Movie> watchList;
+        private ObservableCollection<Movie> watchListAction;
+        private ObservableCollection<Movie> watchListFunny;
         public ObservableCollection<Movie> WatchList
         {
             get { return watchList; }
@@ -64,7 +66,24 @@ namespace MovieApp.ViewModel
                 OnPropertyChanged(nameof(FeaturedMovie));
             }
         }
-
+        public ObservableCollection<Movie> WatchListAction
+        {
+            get { return watchListAction; }
+            set
+            {
+                watchListAction = value;
+                OnPropertyChanged();
+            }
+        }
+        public ObservableCollection<Movie> WatchListFunny
+        {
+            get { return watchListFunny; }
+            set
+            {
+                watchListFunny = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand SelectionCommand => new Command(() =>
         {
             if (selectedMovie != null)
@@ -108,7 +127,25 @@ namespace MovieApp.ViewModel
             var client = new HttpClient();
             var result = await client.GetStringAsync("https://sample-notification-12baf.firebaseio.com/Movies/.json");
             var listmovie = result.Replace("null,"," ");
+            ObservableCollection<Movie> listTem = new ObservableCollection<Movie>();
+            ObservableCollection<Movie> listTem1 = new ObservableCollection<Movie>();
             WatchList = JsonConvert.DeserializeObject<ObservableCollection<Movie>>(listmovie);
+            foreach (Movie item in WatchList)
+            {
+                if(item.Category == "Action")
+                {
+                    listTem.Add(item);
+                }    
+            }
+            foreach (Movie item in WatchList)
+            {
+                if (item.Category == "Funny")
+                {
+                    listTem1.Add(item);
+                }
+            }
+            WatchListAction = listTem;
+            WatchListFunny = listTem1;
         }
     }
 }
