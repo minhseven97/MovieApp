@@ -10,6 +10,7 @@ namespace MovieApp.Model
         public string Synopsis { get; set; }
         public string Thumbnail { get; set; }
         public string Url { get; set; }
-        public bool IsFeatured { get; set; }
+        public string MovieId { get; set; }
+        public string Category { get; set; }
     }
 }
