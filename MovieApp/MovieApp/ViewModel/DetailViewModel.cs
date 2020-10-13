@@ -1,5 +1,6 @@
 ﻿using MovieApp.Model;
 using MovieApp.View;
+using Plugin.Share;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,13 @@ namespace MovieApp.ViewModel
             var vm = new PlayerViewModel { SelectedMovie = selectedMovie };
             var page = new PlayerPage { BindingContext = vm };
             Application.Current.MainPage.Navigation.PushAsync(page);
+        });
+        public ICommand ShareCommand => new Command(() =>
+        {
+            CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage
+            {
+                Text = selectedMovie.Link
+            });
         });
     }
 }

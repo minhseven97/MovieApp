@@ -41,5 +41,17 @@ namespace MovieApp.View
                 await DisplayAlert("Cảnh báo", "Bạn chưa kết nối mạng", "OK");
             }
         }
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await DisplayAlert("Thông báo", "Bạn chắc chắn muốn thoát app?", "Có", "Không");
+                if (result)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                }
+            });
+            return true;
+        }
     }
 }

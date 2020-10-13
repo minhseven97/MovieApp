@@ -79,11 +79,23 @@
                                            TitleFontAttributes="Bold">
                             <tabView:SfTabItem.Content>
                                 <StackLayout>
-                                    <Label Text="{Binding SelectedMovie.Title}"
-                                           TextColor="Black"
-                                           FontSize="16"
-                                           FontAttributes="Bold"
-                                           Margin="20,10,0,0" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding SelectedMovie.Title}"
+                                               TextColor="Black"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               Margin="20,10,0,0"
+                                               HorizontalOptions="Start" />
+                                        <StackLayout HorizontalOptions="EndAndExpand" WidthRequest="40">
+                                            <Image Source="share.png"
+                                                   HeightRequest="35"
+                                                   WidthRequest="35" />
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ShareCommand}" />
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                        
+                                    </StackLayout>
                                     <Label Text="{Binding SelectedMovie.Synopsis}"
                                            TextColor="Black"
                                            FontSize="14"

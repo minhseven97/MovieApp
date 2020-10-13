@@ -16917,10 +16917,13 @@ namespace MovieApp.Droid
 			public const int set = 2131165568;
 			
 			// aapt resource value: 0x7F070181
-			public const int tooltip_frame_dark = 2131165569;
+			public const int share = 2131165569;
 			
 			// aapt resource value: 0x7F070182
-			public const int tooltip_frame_light = 2131165570;
+			public const int tooltip_frame_dark = 2131165570;
+			
+			// aapt resource value: 0x7F070183
+			public const int tooltip_frame_light = 2131165571;
 			
 			static Drawable()
 			{
