@@ -275,10 +275,14 @@
                                      WidthRequest="25"
                                      HeightRequest="25"
                                      BackgroundColor="Transparent" />
-                        <ImageButton Source="find.png"
+                        <Image Source="find.png"
                                      WidthRequest="25"
                                      HeightRequest="25"
-                                     BackgroundColor="Transparent" />
+                                     BackgroundColor="Transparent">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SearchCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
                         <ImageButton Source="set.png"
                                      WidthRequest="25"
                                      HeightRequest="25"

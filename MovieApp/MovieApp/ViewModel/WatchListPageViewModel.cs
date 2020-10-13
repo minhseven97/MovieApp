@@ -84,6 +84,7 @@ namespace MovieApp.ViewModel
                 OnPropertyChanged();
             }
         }
+        //chọn phim từ list tổng
         public ICommand SelectionCommand => new Command(() =>
         {
             if (selectedMovie != null)
@@ -93,6 +94,7 @@ namespace MovieApp.ViewModel
                 Application.Current.MainPage.Navigation.PushAsync(page);
             }
         });
+        //chọn phim từ list funny
         public ICommand SelectionCommand1 => new Command(() =>
         { 
             if (selectedMovie1 != null)
@@ -102,6 +104,7 @@ namespace MovieApp.ViewModel
                 Application.Current.MainPage.Navigation.PushAsync(page1);
             }
         });
+        //chọn phim từ list hành đọng
         public ICommand SelectionCommand2 => new Command(() =>
         {
             if (selectedMovie2 != null)
@@ -111,7 +114,16 @@ namespace MovieApp.ViewModel
                 Application.Current.MainPage.Navigation.PushAsync(page2);
             }
         });
-
+        // chuyển sang trang tìm kiếm phim
+        public ICommand SearchCommand => new Command(() =>
+        {
+            var vm2 = new SearchPageViewModel { WatchList = watchList };
+            var page = new SearchPage { BindingContext = vm2 };
+            Application.Current.MainPage.Navigation.PushAsync(page);
+        });
+        /// <summary>
+        /// xem phim
+        /// </summary>
         public ICommand PlayCommand => new Command(() =>
         {
             if (FeaturedMovie != null)
@@ -121,7 +133,9 @@ namespace MovieApp.ViewModel
                 Application.Current.MainPage.Navigation.PushAsync(page);
             }
         });
-
+        /// <summary>
+        /// lấy dữ liệu phim
+        /// </summary>
         private async void GetOnlineData()
         {
             var client = new HttpClient();

@@ -12,5 +12,6 @@ namespace MovieApp.Model
         public string Url { get; set; }
         public string MovieId { get; set; }
         public string Category { get; set; }
+        public string Link { get; set; }
     }
 }

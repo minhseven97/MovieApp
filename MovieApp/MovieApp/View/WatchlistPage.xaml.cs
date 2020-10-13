@@ -25,5 +25,17 @@ namespace MovieApp.View
             moviesColView1.SelectedItem = null;
             moviesColView2.SelectedItem = null;
         }
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await DisplayAlert("Thông báo", "Bạn chắc chắn muốn thoát app?", "Có", "Không");
+                if (result)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                }
+            });
+            return true;
+        }
     }
 }
