@@ -14,7 +14,7 @@ namespace MovieApp
             Device.SetFlags(new[] { "Expander_Experimental" });
             MainPage = new NavigationPage(new Login());
         }
-
+        public static string Name1;
         protected override void OnStart()
         {
         }
