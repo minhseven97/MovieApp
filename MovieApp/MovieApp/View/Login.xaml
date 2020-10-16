@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:renderers="clr-namespace:MovieApp.Renderers"
              mc:Ignorable="d"
              x:Class="MovieApp.View.Login"
              BackgroundColor="Black"
@@ -12,50 +13,56 @@
                AbsoluteLayout.LayoutFlags="All"
                Aspect="AspectFill"
                Opacity="0.9"
-               Source="a.jpg" />
-        <StackLayout Margin="10,30,10,30"
+               Source="b.png" />
+        <StackLayout Margin="40,30,40,30"
                      AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All"
                      Spacing="20"
-                     VerticalOptions="EndAndExpand">
-            <StackLayout Orientation="Vertical"
-                         Spacing="10"
+                     VerticalOptions="CenterAndExpand">
+            <renderers:PancakeView Padding="10,0,0,0"
+                                   HeightRequest="52"
+                                   BackgroundColor="#333333"
+                                   CornerRadius="5"
+                                   HorizontalOptions="FillAndExpand">
+                <renderers:BorderlessEntry x:Name="txtName"
+                                           Placeholder="Tài khoản"
+                                           TextColor="White"
+                                           PlaceholderColor="White" />
+            </renderers:PancakeView>
+            <renderers:PancakeView Padding="10,0,0,0"
+                                   HeightRequest="52"
+                                   BackgroundColor="#333333"
+                                   CornerRadius="5"
+                                   HorizontalOptions="FillAndExpand">
+                <renderers:BorderlessEntry x:Name="txtPass1"
+                                           Placeholder="Mật khẩu"
+                                           TextColor="White"
+                                           PlaceholderColor="White"
+                                           IsPassword="True" />
+            </renderers:PancakeView>
+            <StackLayout Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand">
-                <Button x:Name="FaceButton"
-                        TranslationY="-50"
+                <Button x:Name="SignupButton"
+                        TranslationX="-50"
+                        Opacity="0"
+                        HeightRequest="60"
+                        BackgroundColor="#FC5A5A"
+                        BorderWidth="1"
+                        CornerRadius="5"
+                        Text="Đăng ký"
+                        Clicked="regi_click"
+                        TextColor="White"
+                        HorizontalOptions="FillAndExpand" />
+                <Button x:Name="LoginButton"
+                        TranslationX="50"
                         Opacity="0"
                         HeightRequest="60"
                         BackgroundColor="#3B5998"
                         CornerRadius="5"
-                        Clicked="login_click"
                         Text="Đăng nhập"
+                        Clicked="login_click"
                         TextColor="White"
                         HorizontalOptions="FillAndExpand" />
-                <StackLayout Orientation="Horizontal"
-                             HorizontalOptions="FillAndExpand">
-                    <Button x:Name="LoginButton"
-                            TranslationX="-50"
-                            Opacity="0"
-                            HeightRequest="60"
-                            BackgroundColor="#FC5A5A"
-                            CornerRadius="5"
-                            Text="Đăng ký"
-                            
-                            TextColor="White"
-                            HorizontalOptions="FillAndExpand" />
-                    <Button x:Name="SignupButton"
-                            TranslationX="50"
-                            Opacity="0"
-                            HeightRequest="60"
-                            BackgroundColor="Transparent"
-                            BorderColor="White"
-                            BorderWidth="1"
-                            
-                            CornerRadius="5"
-                            Text="Thường"
-                            TextColor="White"
-                            HorizontalOptions="FillAndExpand" />
-                </StackLayout>
             </StackLayout>
             <Label FontSize="10"
                    TextColor="White"
@@ -63,13 +70,17 @@
                    VerticalOptions="EndAndExpand">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="By signing up, you agree with our " />
-                        <Span Text="Terms and Conditions"
+                        <Span Text="Để đăng nhập, bạn đã đồng ý với chúng tôi" />
+                        <Span Text="Điều khoản và chính sách"
                               TextColor="#FC5A5A"
                               TextDecorations="Underline" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+            <ActivityIndicator x:Name="loading"
+                               IsRunning="True"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage>

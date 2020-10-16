@@ -1,9 +1,13 @@
-﻿using MovieApp.Model;
+﻿using Firebase.Database;
+using Firebase.Database.Query;
+using MovieApp.Model;
 using MovieApp.View;
 using Plugin.Share;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -21,7 +25,6 @@ namespace MovieApp.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public ICommand PlayCommand => new Command(() =>
         {
             var vm = new PlayerViewModel { SelectedMovie = selectedMovie };
@@ -35,5 +38,30 @@ namespace MovieApp.ViewModel
                 Text = selectedMovie.Link
             });
         });
+        /// <summary>
+        /// comment
+        /// </summary>
+        FirebaseClient firebase = new FirebaseClient("https://sample-notification-12baf.firebaseio.com/");
+
+        public async Task<List<Comment>> GetAllComment()
+        {
+
+            return (await firebase
+              .Child("Comments")
+              .OnceAsync<Comment>()).Select(item => new Comment
+              {
+                  NameUser = item.Object.NameUser,
+                  NameMovie = item.Object.NameMovie,
+                  Comment1 = item.Object.Comment1
+              }).ToList();
+        }
+
+        public async Task AddComment(string nameUser, string NameMovie, string comment1)
+        {
+
+            await firebase
+              .Child("Comments")
+              .PostAsync(new Comment() { NameUser = nameUser, NameMovie = NameMovie, Comment1 = comment1 });
+        }
     }
 }

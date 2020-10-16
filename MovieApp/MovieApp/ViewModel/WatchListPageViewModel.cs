@@ -21,7 +21,6 @@ namespace MovieApp.ViewModel
 
         public Movie FeaturedMovie => WatchList?.Where(x => x.MovieId == "1").FirstOrDefault();
 
-
         private Movie selectedMovie;
         private Movie selectedMovie1;
         private Movie selectedMovie2;

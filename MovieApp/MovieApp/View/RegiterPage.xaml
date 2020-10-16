@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:renderers="clr-namespace:MovieApp.Renderers"
+             mc:Ignorable="d"
+             x:Class="MovieApp.View.RegiterPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image AbsoluteLayout.LayoutBounds="0,0,1,1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   Aspect="AspectFill"
+                   Opacity="0.9"
+                   Source="c.png" />
+            <StackLayout Margin="10,30,10,30"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                         AbsoluteLayout.LayoutFlags="All"
+                         Spacing="20"
+                         VerticalOptions="StartAndExpand">
+                <StackLayout HorizontalOptions="Center"
+                     VerticalOptions="Start">
+                    <BoxView HeightRequest="200"
+                             BackgroundColor="Transparent" />
+                    <ActivityIndicator x:Name="loading"
+                                       IsRunning="True"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand" />
+                    <renderers:PancakeView Padding="10,0,0,0"
+                                           HeightRequest="52"
+                                           BackgroundColor="#333333"
+                                           CornerRadius="5"
+                                           HorizontalOptions="FillAndExpand">
+                        <renderers:BorderlessEntry x:Name="txtName"
+                                                   Placeholder="Tài khoản"
+                                                   TextColor="White"
+                                                   PlaceholderColor="White"
+                                                   FontSize="14" />
+                    </renderers:PancakeView>
+                    <renderers:PancakeView Padding="10,0,0,0"
+                                           HeightRequest="52"
+                                           BackgroundColor="#333333"
+                                           CornerRadius="5"
+                                           HorizontalOptions="FillAndExpand">
+                        <renderers:BorderlessEntry x:Name="txtPass1"
+                                                   Placeholder="Mật khẩu"
+                                                   TextColor="White"
+                                                   PlaceholderColor="White"
+                                                   IsPassword="True" FontSize="14"/>
+                    </renderers:PancakeView>
+                    <renderers:PancakeView Padding="10,0,0,0"
+                                           HeightRequest="52"
+                                           BackgroundColor="#333333"
+                                           CornerRadius="5"
+                                           HorizontalOptions="FillAndExpand">
+                        <renderers:BorderlessEntry x:Name="txtPass2"
+                                                   Placeholder="Nhập lại mật khẩu"
+                                                   TextColor="White"
+                                                   PlaceholderColor="White"
+                                                   IsPassword="True"
+                                                   FontSize="14" />
+                    </renderers:PancakeView>
+                    <StackLayout  HorizontalOptions="CenterAndExpand"
+                          Orientation="Horizontal">
+                        <Button x:Name="btnAdd"
+                                WidthRequest="200"
+                                BackgroundColor="#FC5A5A"
+                                BorderWidth="1"
+                                CornerRadius="5"
+                                Text="Đăng ký"
+                                TextColor="White"
+                                Clicked="BtnAdd_Clicked" />
+                    </StackLayout>
+        </StackLayout>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

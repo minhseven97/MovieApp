@@ -6,6 +6,7 @@
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:renderers="clr-namespace:MovieApp.Renderers"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="MovieApp.View.DetailPage">
@@ -14,7 +15,7 @@
           VerticalOptions="FillAndExpand"
           BackgroundColor="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="0.7*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
@@ -58,67 +59,129 @@
                 </Grid>
             </pv:PancakeView>
         </Grid>
-        <ScrollView Grid.Row="1"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand">
-            <StackLayout Spacing="20"
-                         Margin="0">
-                <tabView:SfTabView BackgroundColor="#ffffff"
-                                   EnableSwiping="True"
-                                   SelectedIndex="{Binding SelectPage, Mode=TwoWay}"
-                                   VisibleHeaderCount="2">
-                    <tabView:SfTabView.SelectionIndicatorSettings>
-                        <tabView:SelectionIndicatorSettings Position="Bottom"
-                                                            StrokeThickness="2"
-                                                            Color="Green" />
-                    </tabView:SfTabView.SelectionIndicatorSettings>
-                    <tabView:SfTabView.Items>
-                        <tabView:SfTabItem Title="Giới thiệu"
-                                           SelectionColor="Green"
-                                           TitleFontColor="Gray"
-                                           TitleFontAttributes="Bold">
-                            <tabView:SfTabItem.Content>
+        <StackLayout Spacing="20"
+                     Margin="0"
+                     Grid.Row="1"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <tabView:SfTabView BackgroundColor="#ffffff"
+                               EnableSwiping="True"
+                               SelectedIndex="{Binding SelectPage, Mode=TwoWay}"
+                               VisibleHeaderCount="2">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings Position="Bottom"
+                                                        StrokeThickness="2"
+                                                        Color="Green" />
+                </tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SfTabView.Items>
+                    <tabView:SfTabItem Title="Giới thiệu"
+                                       SelectionColor="Green"
+                                       TitleFontColor="Gray"
+                                       TitleFontAttributes="Bold">
+                        <tabView:SfTabItem.Content>
+                            <ScrollView>
                                 <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding SelectedMovie.Title}"
-                                               TextColor="Black"
-                                               FontSize="16"
-                                               FontAttributes="Bold"
-                                               Margin="20,10,0,0"
-                                               HorizontalOptions="Start" />
-                                        <StackLayout HorizontalOptions="EndAndExpand" WidthRequest="40">
-                                            <Image Source="share.png"
-                                                   HeightRequest="35"
-                                                   WidthRequest="35" />
-                                            <StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding ShareCommand}" />
-                                            </StackLayout.GestureRecognizers>
+                                    <BoxView BackgroundColor="Gray"
+                                             HeightRequest="0.5" />
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding SelectedMovie.Title}"
+                                                   TextColor="Black"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   Margin="20,10,0,0"
+                                                   HorizontalOptions="Start" />
+                                            <StackLayout HorizontalOptions="EndAndExpand"
+                                                         WidthRequest="40">
+                                                <Image Source="share.png"
+                                                       HeightRequest="35"
+                                                       WidthRequest="35" />
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding ShareCommand}" />
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
                                         </StackLayout>
-                                        
+                                        <Label Text="{Binding SelectedMovie.Synopsis}"
+                                               TextColor="Black"
+                                               FontSize="14"
+                                               Margin="20,0" />
                                     </StackLayout>
-                                    <Label Text="{Binding SelectedMovie.Synopsis}"
-                                           TextColor="Black"
-                                           FontSize="14"
-                                           Margin="20,0" />
                                 </StackLayout>
-                            </tabView:SfTabItem.Content>
-                        </tabView:SfTabItem>
-                        <tabView:SfTabItem Title="Bình luận"
-                                           SelectionColor="Green"
-                                           TitleFontColor="Gray"
-                                           TitleFontAttributes="Bold">
-                            <tabView:SfTabItem.Content>
-                                <StackLayout>
-                                    <Label Text="{Binding SelectedMovie.Title}"
-                                           TextColor="Black"
-                                           FontSize="16"
-                                           FontAttributes="Bold" />
+                            </ScrollView>
+                            
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                    <tabView:SfTabItem Title="Bình luận"
+                                       SelectionColor="Green"
+                                       TitleFontColor="Gray"
+                                       TitleFontAttributes="Bold">
+                        <tabView:SfTabItem.Content>
+                            <StackLayout>
+                                <BoxView BackgroundColor="Gray"
+                                         HeightRequest="0.5" />
+                                <StackLayout Padding="10,5,10,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="7*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                        </Grid.RowDefinitions>
+                                        <renderers:PancakeView Padding="10,0,0,0"
+                                                               HeightRequest="52"
+                                                               BackgroundColor="#CCCCCC"
+                                                               CornerRadius="5"
+                                                               Grid.Column="0"
+                                                               HorizontalOptions="FillAndExpand">
+                                            <renderers:BorderlessEntry x:Name="txtCom"
+                                                                       TextColor="Black"
+                                                                       FontSize="13"
+                                                                       MaxLength="70" />
+                                        </renderers:PancakeView>
+                                        <Button x:Name="btnAdd"
+                                                BackgroundColor="#4267b2"
+                                                BorderWidth="1"
+                                                CornerRadius="5"
+                                                Text="Bình luận"
+                                                FontSize="11"
+                                                TextColor="White"
+                                                Clicked="BtnAdd_Clicked"
+                                                Grid.Column="1" />
+                                    </Grid>
+                                    <ActivityIndicator x:Name="loading"
+                                                       IsRunning="True"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       HorizontalOptions="CenterAndExpand" />
+                                    <ListView x:Name="lstPersons"
+                                              SelectionMode="None">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid RowSpacing="0">
+                                                        <StackLayout BackgroundColor="#f2f3f5"
+                                                                     Orientation="Horizontal"
+                                                                     Padding="5,5,5,5"
+                                                                     VerticalOptions="CenterAndExpand">
+                                                            <Label Text="{Binding NameUser}"
+                                                                   TextColor="#4267b2"
+                                                                   FontAttributes="Bold"
+                                                                   MaxLines="1"
+                                                                   MinimumWidthRequest="60"></Label>
+                                                            <Label Text="{Binding Comment1}"
+                                                                   TextColor="Black"></Label>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
                                 </StackLayout>
-                            </tabView:SfTabItem.Content>
-                        </tabView:SfTabItem>
-                    </tabView:SfTabView.Items>
-                </tabView:SfTabView>
-            </StackLayout>
-        </ScrollView>
+                            </StackLayout>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                </tabView:SfTabView.Items>
+            </tabView:SfTabView>
+        </StackLayout>
     </Grid>
 </ContentPage>
