@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using MovieApp.View;
+using Xamarin.Essentials;
+using MovieApp.Core;
 
 namespace MovieApp
 {
@@ -15,16 +17,46 @@ namespace MovieApp
             MainPage = new NavigationPage(new Login());
         }
         public static string Name1;
+        private bool _isAppRunning;
+        public static bool IsNetworkDownPopupDisplayed = false;
         protected override void OnStart()
         {
+            InitializeNetworkMonitor();
         }
 
         protected override void OnSleep()
         {
+            _isAppRunning = false;
         }
 
         protected override void OnResume()
         {
+            _isAppRunning = true;
+            Connectivity_ConnectivityChanged(null, null);
+        }
+        public void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (_isAppRunning)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (!NetworkStateMonitor.NetworkIsReady() && !IsNetworkDownPopupDisplayed)
+                    {
+                        IsNetworkDownPopupDisplayed = true;
+                        Application.Current.MainPage.DisplayAlert("Cảnh báo", "Kiểm tra lại kết nối mạng", "Ok");
+                    }
+                    else if (NetworkStateMonitor.NetworkIsReady() && IsNetworkDownPopupDisplayed)
+                    {
+                        IsNetworkDownPopupDisplayed = false;
+                    }
+                });
+            }
+        }
+        private void InitializeNetworkMonitor()
+        {
+            if (!_isAppRunning)
+                _isAppRunning = true;
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
     }
 }
