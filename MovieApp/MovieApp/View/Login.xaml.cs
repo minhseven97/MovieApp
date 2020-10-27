@@ -36,8 +36,12 @@ namespace MovieApp.View
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            var IsConnected = CrossConnectivity.Current.IsConnected;
             loading.IsVisible = true;
-            AllPersons = await firebaseHelper.GetAllAcc();
+            if (IsConnected == true)
+            {
+                AllPersons = await firebaseHelper.GetAllAcc();
+            }
             await ViewAnimations.FadeAnimY(LoginButton);
             await ViewAnimations.FadeAnimY(SignupButton);
             loading.IsVisible = false;
@@ -65,6 +69,7 @@ namespace MovieApp.View
             var IsConnected = CrossConnectivity.Current.IsConnected;
             if (IsConnected == true)
             {
+                AllPersons = await firebaseHelper.GetAllAcc();
                 await Check();
                 if(bien==2)
                     await DisplayAlert("Cảnh báo", "Sai tài khoản hoặc mật khẩu", "OK");
