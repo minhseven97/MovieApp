@@ -37,5 +37,22 @@ namespace MovieApp.View
             });
             return true;
         }
+
+        private void SettingClick(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await DisplayAlert("Thông báo", "Bạn chắc chắn muốn đăng xuất?", "Có", "Không");
+                if (result)
+                {
+                    await Navigation.PushAsync(new Login());
+                }
+            });
+        }
+
+        private async Task HistoryClickAsync(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HistoryPage());
+        }
     }
 }

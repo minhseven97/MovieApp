@@ -17,6 +17,7 @@ namespace MovieApp
             MainPage = new NavigationPage(new Login());
         }
         public static string Name1;
+        public static string Seleted1;
         private bool _isAppRunning;
         public static bool IsNetworkDownPopupDisplayed = false;
         protected override void OnStart()

@@ -120,6 +120,13 @@ namespace MovieApp.ViewModel
             var page = new SearchPage { BindingContext = vm2 };
             Application.Current.MainPage.Navigation.PushAsync(page);
         });
+        // chuyển sang trang lịch sử
+        public ICommand HistoryCommand => new Command(() =>
+        {
+            var vm2 = new HistoryViewModel { WatchListHis = watchList };
+            var page = new HistoryPage { BindingContext = vm2 };
+            Application.Current.MainPage.Navigation.PushAsync(page);
+        });
         /// <summary>
         /// xem phim
         /// </summary>
@@ -129,6 +136,7 @@ namespace MovieApp.ViewModel
             {
                 var vm = new PlayerViewModel { SelectedMovie = FeaturedMovie };
                 var page = new PlayerPage { BindingContext = vm };
+                App.Seleted1 = FeaturedMovie.MovieId;
                 Application.Current.MainPage.Navigation.PushAsync(page);
             }
         });
