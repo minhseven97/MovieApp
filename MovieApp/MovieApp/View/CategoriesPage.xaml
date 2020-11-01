@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:renderers="clr-namespace:MovieApp.Renderers"
+             mc:Ignorable="d"
+             x:Class="MovieApp.View.CategoriesPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Spacing="20"
+                     Margin="0"
+                     Grid.Row="1"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <tabView:SfTabView BackgroundColor="#ffffff"
+                               EnableSwiping="True"
+                               SelectedIndex="{Binding SelectPage, Mode=TwoWay}"
+                               VisibleHeaderCount="3">
+                <tabView:SfTabView.SelectionIndicatorSettings>
+                    <tabView:SelectionIndicatorSettings Position="Bottom"
+                                                        StrokeThickness="3"
+                                                        Color="Green" />
+                </tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SfTabView.Items>
+                    <tabView:SfTabItem Title="Phim mới"
+                                       SelectionColor="Green"
+                                       TitleFontColor="Gray"
+                                       TitleFontAttributes="Bold">
+                        <tabView:SfTabItem.Content>
+                            <StackLayout Spacing="0"
+                                         Margin="10,5,10,5">
+                                <BoxView BackgroundColor="Gray"
+                                         HeightRequest="0.5" />
+                                <CollectionView x:Name="List1"
+                                                ItemsLayout="VerticalList"
+                                                SelectedItem="{Binding SelectedMovie1}"
+                                                SelectionMode="Single"
+                                                SelectionChangedCommand="{Binding Selection1Command}"
+                                                BackgroundColor="White">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Padding="10,10,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto" />
+                                                    <RowDefinition Height="10" />
+                                                    <RowDefinition Height="1" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Thumbnail}"
+                                                       Aspect="AspectFill"
+                                                       Grid.RowSpan="2"
+                                                       HeightRequest="100"
+                                                       Grid.Column="0"
+                                                       Grid.Row="0"></Image>
+                                                <Label Text="{Binding Title}"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Grid.RowSpan="2"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       TextColor="Black" />
+                                                <BoxView Grid.Row="2"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         Grid.ColumnSpan="2"
+                                                         VerticalOptions="Center"
+                                                         BackgroundColor="DarkGray" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                    <tabView:SfTabItem Title="Hài hước"
+                                       SelectionColor="Green"
+                                       TitleFontColor="Gray"
+                                       TitleFontAttributes="Bold">
+                        <tabView:SfTabItem.Content>
+                            <StackLayout Spacing="0"
+                                         Margin="10,5,10,5">
+                                <BoxView BackgroundColor="Gray"
+                                         HeightRequest="0.5" />
+                                <CollectionView x:Name="List2"
+                                                ItemsLayout="VerticalList"
+                                                SelectedItem="{Binding SelectedMovie2}"
+                                                SelectionMode="Single"
+                                                SelectionChangedCommand="{Binding Selection2Command}"
+                                                BackgroundColor="White">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Padding="10,10,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto" />
+                                                    <RowDefinition Height="10" />
+                                                    <RowDefinition Height="1" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Thumbnail}"
+                                                       Aspect="AspectFill"
+                                                       Grid.RowSpan="2"
+                                                       HeightRequest="100"
+                                                       Grid.Column="0"
+                                                       Grid.Row="0"></Image>
+                                                <Label Text="{Binding Title}"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Grid.RowSpan="2"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       TextColor="Black" />
+                                                <BoxView Grid.Row="2"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         Grid.ColumnSpan="2"
+                                                         VerticalOptions="Center"
+                                                         BackgroundColor="DarkGray" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                    <tabView:SfTabItem Title="Hành động"
+                                       SelectionColor="Green"
+                                       TitleFontColor="Gray"
+                                       TitleFontAttributes="Bold">
+                        <tabView:SfTabItem.Content>
+                            <StackLayout Spacing="0"
+                                         Margin="10,5,10,5">
+                                <BoxView BackgroundColor="Gray"
+                                         HeightRequest="0.5" />
+                                <CollectionView x:Name="List3"
+                                                ItemsLayout="VerticalList"
+                                                SelectedItem="{Binding SelectedMovie3}"
+                                                SelectionMode="Single"
+                                                SelectionChangedCommand="{Binding Selection3Command}"
+                                                BackgroundColor="White">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Padding="10,10,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="auto" />
+                                                    <RowDefinition Height="10" />
+                                                    <RowDefinition Height="1" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Thumbnail}"
+                                                       Aspect="AspectFill"
+                                                       Grid.RowSpan="2"
+                                                       HeightRequest="100"
+                                                       Grid.Column="0"
+                                                       Grid.Row="0"></Image>
+                                                <Label Text="{Binding Title}"
+                                                       Grid.Row="0"
+                                                       Grid.Column="1"
+                                                       Grid.RowSpan="2"
+                                                       VerticalOptions="CenterAndExpand"
+                                                       TextColor="Black" />
+                                                <BoxView Grid.Row="2"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         Grid.ColumnSpan="2"
+                                                         VerticalOptions="Center"
+                                                         BackgroundColor="DarkGray" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </tabView:SfTabItem.Content>
+                    </tabView:SfTabItem>
+                </tabView:SfTabView.Items>
+            </tabView:SfTabView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

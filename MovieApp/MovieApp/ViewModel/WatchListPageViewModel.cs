@@ -127,6 +127,13 @@ namespace MovieApp.ViewModel
             var page = new HistoryPage { BindingContext = vm2 };
             Application.Current.MainPage.Navigation.PushAsync(page);
         });
+        // chuyển sang trang thể loại
+        public ICommand CategoriesCommand => new Command(() =>
+        {
+            var vm2 = new CategoriesViewModel { WatchList = watchList };
+            var page = new CategoriesPage { BindingContext = vm2 };
+            Application.Current.MainPage.Navigation.PushAsync(page);
+        });
         /// <summary>
         /// xem phim
         /// </summary>
