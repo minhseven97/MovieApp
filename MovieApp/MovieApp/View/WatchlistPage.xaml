@@ -271,6 +271,14 @@
                     </Expander.Header>
                     <StackLayout Spacing="20"
                                  Margin="0,20">
+                        <Image Source="categories.png"
+                               WidthRequest="25"
+                               HeightRequest="25"
+                               BackgroundColor="Transparent">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CategoriesCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
                         <Image Source="history.png"
                                      WidthRequest="25"
                                      HeightRequest="25"
