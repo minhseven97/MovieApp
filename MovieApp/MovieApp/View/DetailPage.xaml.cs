@@ -50,6 +50,7 @@ namespace MovieApp.View
             var nameMovie = vm.SelectedMovie.MovieId;
             AllComment = await firebaseHelper.GetAllComment();
             List<Comment> list = new List<Comment>();
+            //List<Comment> list1 = new List<Comment>();
             foreach(var item in AllComment)
             {
                 if(item.NameMovie == nameMovie)
@@ -57,6 +58,7 @@ namespace MovieApp.View
                     list.Add(item);
                 }
             }
+            list.Reverse();
             lstPersons.ItemsSource = list;
             loading.IsVisible = false;
         }
@@ -76,6 +78,7 @@ namespace MovieApp.View
                     list.Add(item);
                 }
             }
+            list.Reverse();
             lstPersons.ItemsSource = list;
         }
     }

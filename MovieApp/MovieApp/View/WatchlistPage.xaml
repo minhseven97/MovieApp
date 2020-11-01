@@ -271,10 +271,14 @@
                     </Expander.Header>
                     <StackLayout Spacing="20"
                                  Margin="0,20">
-                        <ImageButton Source="person.png"
+                        <Image Source="history.png"
                                      WidthRequest="25"
                                      HeightRequest="25"
-                                     BackgroundColor="Transparent" />
+                                     BackgroundColor="Transparent">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding HistoryCommand}" />
+                            </Image.GestureRecognizers>
+                        </Image>
                         <Image Source="find.png"
                                      WidthRequest="25"
                                      HeightRequest="25"
@@ -283,10 +287,11 @@
                                 <TapGestureRecognizer Command="{Binding SearchCommand}" />
                             </Image.GestureRecognizers>
                         </Image>
-                        <ImageButton Source="set.png"
+                        <ImageButton Source="logout.png"
                                      WidthRequest="25"
                                      HeightRequest="25"
-                                     BackgroundColor="Transparent" />
+                                     BackgroundColor="Transparent" 
+                                     Clicked="SettingClick"/>
                     </StackLayout>
                 </Expander>
             </pv:PancakeView>

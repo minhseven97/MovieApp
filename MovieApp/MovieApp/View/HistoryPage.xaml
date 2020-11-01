@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MovieApp.View.HistoryPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HeightRequest="40"
+                         BackgroundColor="#4267b2">
+                <Label Text="Lịch sử xem"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="StartAndExpand"
+                       FontSize="16"
+                       TextColor="White" Margin="20,0,0,0" FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout Spacing="0"
+                         Margin="10,5,10,5">
+                <CollectionView x:Name="ListHistory"
+                                ItemsLayout="VerticalList"
+                                SelectedItem="{Binding SelectedMovie}"
+                                SelectionMode="Single"
+                                SelectionChangedCommand="{Binding SelectionCommand}"
+                                BackgroundColor="White">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="1" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Thumbnail}"
+                                       Aspect="AspectFill"
+                                       Grid.RowSpan="2"
+                                       HeightRequest="100"
+                                       Grid.Column="0"
+                                       Grid.Row="0"></Image>
+                                <Label Text="{Binding Title}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"
+                                       Grid.RowSpan="2"
+                                       VerticalOptions="CenterAndExpand"
+                                       TextColor="Black" />
+                                <BoxView Grid.Row="2"
+                                         HorizontalOptions="FillAndExpand"
+                                         Grid.ColumnSpan="2"
+                                         VerticalOptions="Center"
+                                         BackgroundColor="DarkGray" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

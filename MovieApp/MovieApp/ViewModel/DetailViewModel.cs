@@ -29,6 +29,7 @@ namespace MovieApp.ViewModel
         {
             var vm = new PlayerViewModel { SelectedMovie = selectedMovie };
             var page = new PlayerPage { BindingContext = vm };
+            App.Seleted1 = selectedMovie.MovieId;
             Application.Current.MainPage.Navigation.PushAsync(page);
         });
         public ICommand ShareCommand => new Command(() =>
